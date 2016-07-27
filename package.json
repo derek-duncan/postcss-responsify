@@ -12,10 +12,16 @@
   },
   "keywords": [
     "postcss",
+    "postcss-plugin",
     "responsive",
+    "stylesheet",
+    "classes",
     "css"
   ],
-  "author": "Derek Duncan <work@derekduncan.me>",
+  "author": {
+    "name": "Derek Duncan",
+    "email": "work@derekduncan.me"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/derek-duncan/postcss-responsify/issues"
