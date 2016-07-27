@@ -1,6 +1,7 @@
 # postcss-responsify
 [PostCSS](https://github.com/postcss/postcss) plugin to create responsive classes with the `@responsive` rule.
 
+**Config**
 ```javascript
 const postcss = require('postcss');
 const responsify = require('postcss-responsify');
@@ -8,15 +9,18 @@ const responsify = require('postcss-responsify');
 const breakpoints = [
   { prefix: 'sm-', mediaQuery: '(min-width: 40em)' },
   { prefix: 'md-', mediaQuery: '(min-width: 52em)' },
-]
-postcss()
-  .use(responsify()({
-    breakpoints
-  }));
+];
+const responsifyOptions = {
+  breakpoints,
+};
+postcss().use(responsify(responsifyOptions));
 ```
 
-**PostCSS**
+---
+
+**Input**
 ```css
+/* all rules in this tag will have generated responsive classes */
 @responsive {
   .col { float: left; box-sizing: border-box; }
   .col-1 { width: calc(1/12 * 100%); }
@@ -25,13 +29,17 @@ postcss()
 }
 ```
 
-**CSS**
+↓
+
+**Output**
 ```css
+/* unprefixed rules will be added as well */
 .col { float: left; box-sizing: border-box; }
 .col-1 { width: calc(1/12 * 100%); }
 .col-2 { width: calc(2/12 * 100%); }
 .col-3 { width: calc(2/12 * 100%); }
 
+/* prefix and media query come from plugin config */
 @media (min-width: 40em) {
   .sm-col { float: left; box-sizing: border-box; }
   .sm-col-1 { width: calc(1/12 * 100%); }
