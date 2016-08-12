@@ -1,0 +1,116 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'publish' ]
+2 info using npm@3.9.5
+3 info using node@v6.2.2
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/Users/Derek/code/postcss-responsify',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /Users/Derek/.npm/postcss-responsify/1.0.0/package.tgz not in flight; packing
+9 verbose correctMkdir /Users/Derek/.npm correctMkdir not in flight; initializing
+10 info lifecycle postcss-responsify@1.0.0~prepublish: postcss-responsify@1.0.0
+11 silly lifecycle postcss-responsify@1.0.0~prepublish: no script for prepublish, continuing
+12 verbose tar pack [ '/Users/Derek/.npm/postcss-responsify/1.0.0/package.tgz',
+12 verbose tar pack   '/Users/Derek/code/postcss-responsify' ]
+13 verbose tarball /Users/Derek/.npm/postcss-responsify/1.0.0/package.tgz
+14 verbose folder /Users/Derek/code/postcss-responsify
+15 verbose addLocalTarball adding from inside cache /Users/Derek/.npm/postcss-responsify/1.0.0/package.tgz
+16 verbose correctMkdir /Users/Derek/.npm correctMkdir not in flight; initializing
+17 silly cache afterAdd postcss-responsify@1.0.0
+18 verbose afterAdd /Users/Derek/.npm/postcss-responsify/1.0.0/package/package.json not in flight; writing
+19 verbose correctMkdir /Users/Derek/.npm correctMkdir not in flight; initializing
+20 verbose afterAdd /Users/Derek/.npm/postcss-responsify/1.0.0/package/package.json written
+21 silly publish { name: 'postcss-responsify',
+21 silly publish   version: '1.0.0',
+21 silly publish   description: 'PostCSS plugin to automatically create responsive classes with at-rules',
+21 silly publish   main: 'index.js',
+21 silly publish   scripts: { test: 'echo "Error: no test specified" && exit 1' },
+21 silly publish   repository:
+21 silly publish    { type: 'git',
+21 silly publish      url: 'git+https://github.com/derek-duncan/postcss-responsify.git' },
+21 silly publish   keywords:
+21 silly publish    [ 'postcss',
+21 silly publish      'postcss-plugin',
+21 silly publish      'responsive',
+21 silly publish      'stylesheet',
+21 silly publish      'classes',
+21 silly publish      'css' ],
+21 silly publish   author: { name: 'Derek Duncan', email: 'work@derekduncan.me' },
+21 silly publish   license: 'MIT',
+21 silly publish   bugs: { url: 'https://github.com/derek-duncan/postcss-responsify/issues' },
+21 silly publish   homepage: 'https://github.com/derek-duncan/postcss-responsify#readme',
+21 silly publish   dependencies: { postcss: '^5.1.1' },
+21 silly publish   readme: '# postcss-responsify\n[PostCSS](https://github.com/postcss/postcss) plugin to create responsive classes with the `@responsive` rule.\n\n**Config**\n```javascript\nconst postcss = require(\'postcss\');\nconst responsify = require(\'postcss-responsify\');\n\nconst breakpoints = [\n  { prefix: \'sm-\', mediaQuery: \'(min-width: 40em)\' },\n  { prefix: \'md-\', mediaQuery: \'(min-width: 52em)\' },\n];\nconst responsifyOptions = {\n  breakpoints,\n};\npostcss().use(responsify(responsifyOptions));\n```\n\n---\n\n**Input**\n```css\n/* all rules in this tag will have generated responsive classes */\n@responsive {\n  .col { float: left; box-sizing: border-box; }\n  .col-1 { width: calc(1/12 * 100%); }\n  .col-2 { width: calc(2/12 * 100%); }\n  .col-3 { width: calc(2/12 * 100%); }\n}\n```\n\n↓\n\n**Output**\n```css\n/* unprefixed rules will be added as well */\n.col { float: left; box-sizing: border-box; }\n.col-1 { width: calc(1/12 * 100%); }\n.col-2 { width: calc(2/12 * 100%); }\n.col-3 { width: calc(2/12 * 100%); }\n\n/* prefix and media query come from plugin config */\n@media (min-width: 40em) {\n  .sm-col { float: left; box-sizing: border-box; }\n  .sm-col-1 { width: calc(1/12 * 100%); }\n  .sm-col-2 { width: calc(2/12 * 100%); }\n  .sm-col-3 { width: calc(2/12 * 100%); }\n}\n\n@media (min-width: 52em) {\n  .md-col { float: left; box-sizing: border-box; }\n  .md-col-1 { width: calc(1/12 * 100%); }\n  .md-col-2 { width: calc(2/12 * 100%); }\n  .md-col-3 { width: calc(2/12 * 100%); }\n}\n```\n',
+21 silly publish   readmeFilename: 'README.md',
+21 silly publish   gitHead: '39754cffdd20e52f6b6e1f217f4a0b00f5a1bbd5',
+21 silly publish   _id: 'postcss-responsify@1.0.0',
+21 silly publish   _shasum: '116f773ffde284793d5026ccc8d69534c7954e1c',
+21 silly publish   _from: '.' }
+22 verbose getPublishConfig undefined
+23 silly mapToRegistry name postcss-responsify
+24 silly mapToRegistry using default registry
+25 silly mapToRegistry registry https://registry.npmjs.org/
+26 silly mapToRegistry data Result {
+26 silly mapToRegistry   raw: 'postcss-responsify',
+26 silly mapToRegistry   scope: null,
+26 silly mapToRegistry   name: 'postcss-responsify',
+26 silly mapToRegistry   rawSpec: '',
+26 silly mapToRegistry   spec: 'latest',
+26 silly mapToRegistry   type: 'tag' }
+27 silly mapToRegistry uri https://registry.npmjs.org/postcss-responsify
+28 verbose publish registryBase https://registry.npmjs.org/
+29 silly publish uploading /Users/Derek/.npm/postcss-responsify/1.0.0/package.tgz
+30 verbose request uri https://registry.npmjs.org/postcss-responsify
+31 verbose request sending authorization for write operation
+32 info attempt registry request try #1 at 9:30:20 PM
+33 verbose request using bearer token for auth
+34 verbose request id ba595b292a67c4cf
+35 http request PUT https://registry.npmjs.org/postcss-responsify
+36 info retry will retry, error on last attempt: Error: getaddrinfo ENOTFOUND registry.npmjs.org registry.npmjs.org:443
+37 info attempt registry request try #2 at 9:30:30 PM
+38 verbose request using bearer token for auth
+39 http request PUT https://registry.npmjs.org/postcss-responsify
+40 http 403 https://registry.npmjs.org/postcss-responsify
+41 verbose headers { 'content-type': 'application/json',
+41 verbose headers   'cache-control': 'max-age=300',
+41 verbose headers   'content-length': '95',
+41 verbose headers   'accept-ranges': 'bytes',
+41 verbose headers   date: 'Sat, 13 Aug 2016 02:30:31 GMT',
+41 verbose headers   via: '1.1 varnish',
+41 verbose headers   connection: 'keep-alive',
+41 verbose headers   'x-served-by': 'cache-dfw1836-DFW',
+41 verbose headers   'x-cache': 'MISS',
+41 verbose headers   'x-cache-hits': '0',
+41 verbose headers   'x-timer': 'S1471055430.777568,VS0,VE1127',
+41 verbose headers   vary: 'Accept-Encoding' }
+42 verbose request invalidating /Users/Derek/.npm/registry.npmjs.org/postcss-responsify on PUT
+43 error publish Failed PUT 403
+44 verbose stack Error: "You cannot publish over the previously published version 1.0.0." : postcss-responsify
+44 verbose stack     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:264:12)
+44 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:252:14)
+44 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
+44 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:200:22)
+44 verbose stack     at emitTwo (events.js:106:13)
+44 verbose stack     at Request.emit (events.js:191:7)
+44 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1067:10)
+44 verbose stack     at emitOne (events.js:101:20)
+44 verbose stack     at Request.emit (events.js:188:7)
+44 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:988:12)
+45 verbose statusCode 403
+46 verbose pkgid postcss-responsify
+47 verbose cwd /Users/Derek/code/postcss-responsify
+48 error Darwin 15.6.0
+49 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "publish"
+50 error node v6.2.2
+51 error npm  v3.9.5
+52 error code E403
+53 error "You cannot publish over the previously published version 1.0.0." : postcss-responsify
+54 error If you need help, you may report this error at:
+54 error     <https://github.com/npm/npm/issues>
+55 verbose exit [ 1, true ]

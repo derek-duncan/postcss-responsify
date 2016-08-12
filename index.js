@@ -10,6 +10,7 @@
  */
 
 const postcss = require('postcss');
+const merge = require('lodash/merge');
 
 /**
  * Processes a breakpoint option by creating a PostCSS @media atRule from the options
@@ -60,11 +61,8 @@ function processBreakpoints(breakpointsOption) {
     },
   ];
 
-  const processedBreakpoints = defaultBreakpoints
-    .concat(breakpointsOption || [])
-    .map(breakpoint => processBreakpoint(breakpoint));
-
-  return processedBreakpoints;
+  const mergedBreakpoints = merge([], defaultBreakpoints, breakpointsOption);
+  return mergedBreakpoints.map(processBreakpoint);
 }
 
 /**
@@ -139,6 +137,8 @@ module.exports = postcss.plugin('postcss-responsify', (opts) => {
     root.walkAtRules('responsive', loopResponsiveRules(breakpoints));
 
     /* append each breakpoint's populated atRule into the css */
-    root.append(breakpoints.map(breakpoint => breakpoint.atRule));
+    root.append(breakpoints.map(breakpoint => {
+      return breakpoint.atRule;
+    }));
   };
 });
