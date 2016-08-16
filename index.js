@@ -105,7 +105,7 @@ function responsifyRule(breakpoints) {
     breakpoints.forEach((breakpoint) => {
       const responsiveRule = createPrefixedRule(rule, breakpoint.prefix);
       if (responsiveRule) {
-        breakpoint.atRule.prepend(responsiveRule);
+        breakpoint.atRule.append(responsiveRule);
       }
     });
   };
