@@ -1,6 +1,6 @@
 {
   "name": "postcss-responsify",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "PostCSS plugin to automatically create responsive classes with at-rules",
   "main": "index.js",
   "scripts": {

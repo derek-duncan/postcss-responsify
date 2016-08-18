@@ -4,7 +4,7 @@
  * @author Derek Duncan <work@derekduncan.me>
  *
  * TODO:
- * -[] Improve performance
+ * -[x] Improve performance
  * -[] Extend @responsive with breakpoint options
  * -[] Support nested @responsive
  */
@@ -14,30 +14,45 @@ const merge = require('lodash/merge');
 
 /**
  * Processes a breakpoint option by creating a PostCSS @media atRule from the options
+ * @param {Object} root Root postcss node
  * @param {Object} breakpointOption
  * @param {String} breakpointOption.name
  * @param {String} breakpointOption.mediaQuery
  * @return {Object} Processed breakpoint option
  */
-function processBreakpoint(breakpointOption) {
+function processBreakpoint(root, breakpointOption) {
   if (breakpointOption && breakpointOption !== Object(breakpointOption)) {
     throw new Error('Breakpoint must be of type Object.');
   }
 
   const processedBreakpoint = Object.assign({}, breakpointOption);
-  processedBreakpoint.atRule = postcss.atRule({
-    name: 'media',
-    params: processedBreakpoint.mediaQuery,
+
+  let atRule;
+  /* search current rules to see if one exists */
+  root.walkAtRules('media', rule => {
+    if (rule.params !== processedBreakpoint.mediaQuery) return;
+    atRule = rule;
   });
 
+  /* if no rules exist, create a new one */
+  if (!atRule) {
+    atRule = postcss.atRule({
+      name: 'media',
+      params: processedBreakpoint.mediaQuery,
+    });
+  }
+
+  processedBreakpoint.atRule = atRule;
   return processedBreakpoint;
 }
 
 /**
  * Provides defaults for the breakpoints options and processes each one
+ * @param {Object} root Root postcss node
+ * @param {Array} breakpointsOption Array of breakpoint objects
  * @return {Array} Processed breakpoints option
  */
-function processBreakpoints(breakpointsOption) {
+function processBreakpoints(root, breakpointsOption) {
   if (breakpointsOption && !Array.isArray(breakpointsOption)) {
     throw new Error('Breakpoints option must be of type Array.');
   }
@@ -62,7 +77,7 @@ function processBreakpoints(breakpointsOption) {
   ];
 
   const mergedBreakpoints = merge([], defaultBreakpoints, breakpointsOption);
-  return mergedBreakpoints.map(processBreakpoint);
+  return mergedBreakpoints.map((breakpoint) => processBreakpoint(root, breakpoint));
 }
 
 /**
@@ -131,9 +146,9 @@ function loopResponsiveRules(breakpoints) {
 
 module.exports = postcss.plugin('postcss-responsify', (opts) => {
   const options = opts || {};
-  const breakpoints = processBreakpoints(options.breakpoints);
 
   return (root) => {
+    const breakpoints = processBreakpoints(root, options.breakpoints);
     root.walkAtRules('responsive', loopResponsiveRules(breakpoints));
 
     /* append each breakpoint's populated atRule into the css */
