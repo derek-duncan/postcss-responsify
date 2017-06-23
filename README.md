@@ -3,7 +3,7 @@
 
 **Install**
 ```
-npm install postcss-responsify --save
+npm install postcss-responsify --save-dev
 ```
 
 **Config**
