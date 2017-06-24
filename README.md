@@ -1,6 +1,11 @@
 # postcss-responsify
 [PostCSS](https://github.com/postcss/postcss) plugin to create responsive classes with the `@responsive` rule.
 
+**Install**
+```
+npm install postcss-responsify --save-dev
+```
+
 **Config**
 ```javascript
 const postcss = require('postcss');
